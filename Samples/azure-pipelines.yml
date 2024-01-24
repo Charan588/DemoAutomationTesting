@@ -1,17 +1,17 @@
 # File: azure-pipelines.yml
 # Build Name / Format
-name: PowerAppsTestAutomation-$(date:yyyyMMdd)$(rev:.r)
+name: DemoAutomationTesting-$(date:yyyyMMdd)$(rev:.r)
 
 resources:
   repositories:
-    - repository: PowerAppsTestAutomation
+    - repository: DemoAutomationTesting
       type: github
-      # GitHub Repo(e.g. <FORK>/PowerAppsTestAutomation)
+      # GitHub Repo(e.g. <FORK>/DemoAutomationTesting)
       # Recommended to Fork or Duplicate if custom auth flows are required
-      name: microsoft/PowerAppsTestAutomation
+      name: microsoft/DemoAutomationTesting
       ref: master
       # Name of the GitHub OAuth ADO Service Connection
-      endpoint: <ADO GitHub OAuth Service Connection Name>
+      endpoint: https://github.com/Charan588/DemoAutomationTesting.git
 
 parameters:
  - name: image
@@ -60,13 +60,13 @@ jobs:
     # Project name of repo containing TestAutomationURLs (spaces should be encoded as %20)
     # Example: Contoso Test Framework --> Contoso%20Test%20Framework
   - name: LocalProjectName
-    value: PowerAppsTestAutomation
+    value: DemoAutomationTesting
 
   steps:
   - checkout: self
-  - checkout: PowerAppsTestAutomation
+  - checkout: DemoAutomationTesting
   #- template: localsteps.yml # Provide optional local YAML template here
-  - template: frameworksteps.yml@PowerAppsTestAutomation
+  - template: frameworksteps.yml@DemoAutomationTesting
     parameters:
       OnlineUsername: $(OnlineUsername)
       OnlinePassword: $(OnlinePassword)
